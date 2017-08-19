@@ -16,7 +16,7 @@ import com.model.User;
 
 @SuppressWarnings("unused")
 
-@Repository("CategoryDaoImpl")
+@Repository("categoryDaoImpl")
 
 public class CategoryDaoImpl implements CategoryDao
 {

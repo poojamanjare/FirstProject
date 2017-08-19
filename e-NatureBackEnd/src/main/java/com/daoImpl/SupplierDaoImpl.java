@@ -17,7 +17,7 @@ import com.model.Supplier;
 
 @SuppressWarnings("deprecation")
 
-@Repository("SupplierDaoImpl")
+@Repository("supplierDaoImpl")
 public class SupplierDaoImpl implements SupplierDao 
 {
 	@Autowired

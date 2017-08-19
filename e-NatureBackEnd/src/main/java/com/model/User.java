@@ -16,17 +16,17 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity
-@Table(name="User")
-public class User implements Serializable 
+@Entity					//it should automatically create table through hibernate
+@Table(name="User")		//"User"=name of table
+public class User implements Serializable 		//serializable=because we pass data through object
 {
-	@Id
-	@Email(message="Enter valid Email")
+	@Id											//it create email column as primary key
+	@Email(message="Enter valid Email")	
 	@NotEmpty(message="Enter the Email")
 	private String email;
 	
 	
-	//private int id;
+	
 	@NotEmpty(message="Enter the Name")
 	@Column(name="name")
 	private String name;

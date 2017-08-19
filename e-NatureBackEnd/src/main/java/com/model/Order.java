@@ -1,4 +1,4 @@
-/*package com.model;
+package com.model;
 
 import java.io.Serializable;
 import java.util.*;
@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 @SuppressWarnings("unused")
 @Entity
 @Component
-@Table(name="Order")
+@Table(name="Orders")
 
 public class Order 
 {
@@ -27,7 +27,7 @@ public class Order
 	private User user;
 	
 	private String payment;
-	private Double total;
+	private double total;
 	
 	public int getOrderId() {
 		return orderId;
@@ -56,4 +56,3 @@ public class Order
 	
 
 }
-*/

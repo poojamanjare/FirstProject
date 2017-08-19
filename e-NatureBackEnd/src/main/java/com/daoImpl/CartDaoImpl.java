@@ -1,5 +1,4 @@
 package com.daoImpl;
-
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -10,49 +9,39 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.dao.ProductDao;
+import com.model.Cart;
 import com.model.Category;
 import com.model.Product;
 
-
 @SuppressWarnings("deprecation")
 
-@Repository("productDaoImpl")
-public class ProductDaoImpl implements ProductDao
+@Repository("CartDaoImpl")
+public class CartDaoImpl 
 {
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public ProductDaoImpl(SessionFactory sessionFactory)
+	public CartDaoImpl(SessionFactory sessionFactory)
 	{
 		this.sessionFactory=sessionFactory;
 	}
-	
-	public void insertProduct(Product product)
+	//=================insert into cart==================================
+	public void insert(Cart cart)
 	{
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(product);
+		session.saveOrUpdate(cart);
 		session.getTransaction().commit();
 	}
-	
-	public List<Product>retrieve()
+	@SuppressWarnings("unused")
+	public List<Cart> findCartById(String userId)
 	{
 		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		List<Product>list=session.createQuery("from Product").list();
-		session.getTransaction().commit();
-		return list;
-	}
-	
-	public Product findById(int pid)
-	{
-		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		Product p=null;
+		List<Cart> cr=null;
 		try
 		{
-			session.getTransaction();
-			p=session.get(Product.class, pid);
+			session.beginTransaction();
+			cr=(List<Cart>)session.createQuery("from Cart where userMailId=:email").setString("email",userId).list();
 			session.getTransaction().commit();
 		}
 		catch(HibernateException ex)
@@ -60,36 +49,35 @@ public class ProductDaoImpl implements ProductDao
 			ex.printStackTrace();
 			session.getTransaction().rollback();
 		}
-		return p;
+		return cr;
 		
 	}
-	
-	public List<Product>getProdById(int cid)
+	//========================================================================================
+	public Cart getCartById(int cartId,String userEmail)
 	{
 		Session session=sessionFactory.openSession();
-		List<Product>products=null;
+		Cart cr=null;
 		session.beginTransaction();
-		products=session.createQuery("from Product where cid="+cid).list();
-		System.out.println(products);
+		cr=(Cart)session.createQuery("from Cart where userMailId=:email and cartProductId=:id").setString("email",userEmail).setInteger("id", cartId).uniqueResult();
 		session.getTransaction().commit();
-		return products;
+		return cr;		
 	}
-	//============for delete product============================
-	public void deleteProduct(int pid)
+	//=====================delete cart===============================================================
+	public void deleteCart(int cartId)
 	{
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
-		Product product=(Product)session.get(Product.class, pid);
-		session.delete(product);
+		Cart cr=(Cart)session.get(Cart.class, cartId);
+		session.delete(cr);
+		session.getTransaction().commit();
+	}
+	//====================update cart====================================================
+	public void update(Cart cr)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(cr);
 		session.getTransaction().commit();
 	}
 
-	public void update(Product p)
-	{
-		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		session.update(p);
-		session.getTransaction().commit();
-	}
-	
 }

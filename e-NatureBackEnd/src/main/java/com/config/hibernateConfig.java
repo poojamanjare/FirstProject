@@ -4,7 +4,7 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.hibernate.SessionFactory;
+import org.hibernate.SessionFactory;						//To create object of hibernate session
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,45 +14,55 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.daoImpl.CartDaoImpl;
 import com.daoImpl.CategoryDaoImpl;
+import com.daoImpl.OrderDaoImpl;
 import com.daoImpl.ProductDaoImpl;
 import com.daoImpl.SupplierDaoImpl;
 import com.daoImpl.UserDaoImpl;
-/*import com.model.Cart;*/
+import com.model.Cart;
 import com.model.Category;
-/*import com.model.Order;*/
+import com.model.Order;
 import com.model.Product;
 import com.model.Supplier;
 /*import com.daoImpl.UserDaoImpl;*/
 import com.model.User;
 
 
-@Configuration
-@ComponentScan("com")
-@EnableTransactionManagement
+@Configuration				//Used to configure hibernate properties
+							//indicates that this class contains one or more bean methods annotated 
+							//with @Bean producing beans manageable by spring container.
+@ComponentScan("com.*")			//Used to scan model class   
+								//(com.*)=under com package,scan all folder and classes & perform transaction
+@EnableTransactionManagement	//it is equivalent to Spring’s tx:* XML namespace, 
+								//enabling Spring’s annotation-driven transaction management capability
 public class hibernateConfig{
 
-@Autowired
-@Bean(name="dataSource")
+@Autowired						//(Bean id has to be included in dispatcher-servlet)					
+								//@Autowired is used for automatically added to dispatcher servlet.
+								
+@Bean(name="dataSource")	//"dataSource"=bean name
 public DataSource getH2DataSource()
 {
 System.out.println("Data Source Method");
 DriverManagerDataSource dataSource = new DriverManagerDataSource();
-dataSource.setDriverClassName("org.h2.Driver");
-dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
-dataSource.setUsername("sa");
-dataSource.setPassword("");
+dataSource.setDriverClassName("org.h2.Driver");			//driver class
+dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");	//JDBC URL
+dataSource.setUsername("sa");							//username
+dataSource.setPassword("");								//password
 
 System.out.println("Data Source Created");
 return dataSource;
 }
 private Properties getHibernateProperties() 
 {
-System.out.println("after h2 connection................");
+System.out.println("************************Database h2 is connected******************************");
 Properties properties = new Properties();
 properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-properties.put("hibernate.hbm2ddl.auto", "update");
-properties.put("hibernate.show_sql", "true");
+properties.put("hibernate.hbm2ddl.auto", "update");		//update=it create table if is not present and update the table
+														//we can also used create but it only create table not update it
+//You can enable many hibernate properties like automatic table creation by hbm2ddl.auto etc. in applicationContext.xml file.
+properties.put("hibernate.show_sql", "true");	//show_sql=will show sql query on console
 return properties;
 }
 
@@ -65,8 +75,8 @@ sessionBuilder.addAnnotatedClass(User.class);
 sessionBuilder.addAnnotatedClass(Category.class); 
 sessionBuilder.addAnnotatedClass(Product.class); 
 sessionBuilder.addAnnotatedClass(Supplier.class); 
-/*sessionBuilder.addAnnotatedClass(Cart.class); 
-sessionBuilder.addAnnotatedClass(Order.class); */
+sessionBuilder.addAnnotatedClass(Cart.class); 
+sessionBuilder.addAnnotatedClass(Order.class); 
 
 
 
@@ -102,7 +112,7 @@ public SupplierDaoImpl getSupplierDAO(SessionFactory sessionFactory)
 return new SupplierDaoImpl(sessionFactory);
 }
 
-/*@Autowired
+@Autowired
 @Bean(name="CartDaoImpl")
 public CartDaoImpl getCartDAO(SessionFactory sessionFactory)
 {
@@ -114,7 +124,7 @@ return new CartDaoImpl(sessionFactory);
 public OrderDaoImpl getOrderDAO(SessionFactory sessionFactory)
 {
 return new OrderDaoImpl(sessionFactory);
-}*/
+}
 
 
 

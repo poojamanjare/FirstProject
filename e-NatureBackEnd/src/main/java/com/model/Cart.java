@@ -1,4 +1,4 @@
-/*package com.model;
+package com.model;
 
 import java.io.Serializable;
 import java.util.*;
@@ -40,6 +40,10 @@ public class Cart implements Serializable
 		this.cartUserDetails=cartUserDetails;
 		this.cartPrice=cartPrice;
 		this.cartQuantity=cartQuantity;
+		
+	}
+	public Cart()
+	{
 		
 	}
 	
@@ -87,4 +91,3 @@ public class Cart implements Serializable
 	}
 	
 }
-*/

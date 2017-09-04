@@ -3,14 +3,19 @@
 <%@ taglib prefix="form"  uri="http://www.springframework.org/tags/form" %> 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@include file="header.jsp" %>
-<%-- <%@include file="footer.jsp" %>--%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 
 <head>
-
+<style>
+body
+{
+background-image: url("resources/images/wall2.jpg");
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, intial-scale=1">
@@ -26,24 +31,31 @@
 
 </head>
 <body>
-<div class="login-page">
+<%@include file="header.jsp" %>
 <h2 style="text-align: center;"><b>Please Login</b></h2>
-<div class="form">
-      <form class="login-form">
-      <input type="text" placeholder="username" required="required"/>
-      <input type="password" placeholder="password" required="required"/>
-      <button><a href="/">login</a></button>
-      <%-- <a class="btn btn-info" role="button" href="<c:url value="/productCustList?cid"></c:url>">LOGIN</a> --%>
-      <p class="message" style="color: black;">Not registered? <a href="register">Create an account</a></p>
-    </form>
+<div class="login-page">
+<form action="perform_login" class="form-signin" method="post">
+  <div class="imgcontainer">
+    <img src="resources/images/userIcon.png" alt="Avatar" class="avatar">
   </div>
+
+  <div class="container" style="color: black;">
+    <!-- <label><b>Username</b></label> -->
+    <input type="text" placeholder="Email" name="username" required/>
+
+    <!-- <label><b>Password</b></label> -->
+    <input type="password" placeholder="Password" name="password" required/>
+        
+    <button type="submit">Login</button>
+    <input type="checkbox" checked="checked"> Remember me
+    <p class="message">Not registered? <a href="register">Create an account</a></p>
+  </div>
+  <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+</form>
 </div>
-<br><br>
-<br><br>
-<br>
-<br>
 <div>
- <%@include file="footer.jsp" %> 
-</div>
+<%@include file= "footer.jsp" %>
+</div>	
 </body>
 </html>

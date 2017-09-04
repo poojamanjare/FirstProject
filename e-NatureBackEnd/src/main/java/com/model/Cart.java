@@ -12,20 +12,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @SuppressWarnings("unused")
-@Entity
+@Entity						//create table in db through hibernate
 @Component
 @Table(name="CartDetails")
 
 public class Cart implements Serializable 
 {
 	@Id
-	@GeneratedValue
+	@GeneratedValue					//db generate new primary key,,not for us
 	private int cartId;
 	
 	private int cartProductId;
 	
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="userMailId")
+	@OneToOne(fetch=FetchType.LAZY)		//LAZY=it will not automatically call relational data(it loads data on demand
+	@JoinColumn(name="userMailId")		//join email column of user table to cart table(as foreign key)
 	private User cartUserDetails;
 	private Double cartPrice;
 	
@@ -33,6 +33,7 @@ public class Cart implements Serializable
 	private String cartImage;
 	private String cartProductName;
 	
+	//parameterized constructor
 	public Cart(int cartId,int cartProductId,User cartUserDetails,Double cartPrice,int cartQuantity)
 	{
 		this.cartId=cartId;

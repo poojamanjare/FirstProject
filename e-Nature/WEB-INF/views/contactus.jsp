@@ -3,10 +3,16 @@
 <%@ taglib prefix="form"  uri="http://www.springframework.org/tags/form" %> 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@include file="header.jsp" %>
+     <%-- <%@include file="header.jsp" %> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style>
+body
+{
+background-image: url("resources/images/wall2.jpg");
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, intial-scale=1">
@@ -20,7 +26,9 @@
 <title>Contact Us</title>
 </head>
 <body>
-<div class="container">
+<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+
+<div class="container" style="color: black;">
 <h1>Contact Form</h1>
 <div class="col-md-12">
 	<div class="row">

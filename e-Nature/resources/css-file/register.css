@@ -1,7 +1,6 @@
 @CHARSET "ISO-8859-1";
 .container {
   position: relative;
-  /*  border: 25px solid green; */
   z-index: 1;
   outline-style:double;
   background: #FFFFFF;

@@ -13,7 +13,7 @@ import com.model.Cart;
 import com.model.Category;
 import com.model.Product;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings("deprecation")		//supress the complie time warning
 
 @Repository("CartDaoImpl")
 public class CartDaoImpl 
@@ -33,6 +33,8 @@ public class CartDaoImpl
 		session.saveOrUpdate(cart);
 		session.getTransaction().commit();
 	}
+	
+	//===============find Mycart by Id===========================================
 	@SuppressWarnings("unused")
 	public List<Cart> findCartById(String userId)
 	{
@@ -52,7 +54,7 @@ public class CartDaoImpl
 		return cr;
 		
 	}
-	//========================================================================================
+	//==============================get Mycart by id==========================================================
 	public Cart getCartById(int cartId,String userEmail)
 	{
 		Session session=sessionFactory.openSession();

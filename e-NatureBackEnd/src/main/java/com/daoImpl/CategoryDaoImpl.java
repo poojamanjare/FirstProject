@@ -28,6 +28,7 @@ public class CategoryDaoImpl implements CategoryDao
 		this.sessionFactory=sessionFactory;
 	}
 	
+	//============insert category==============================
 	public void insertCategory(Category category)
 	{
 		Session session=sessionFactory.openSession();
@@ -35,7 +36,7 @@ public class CategoryDaoImpl implements CategoryDao
 		session.saveOrUpdate(category);
 		session.getTransaction().commit();
 	}
-	
+	//=================retrieve category list==============================
 	public List<Category>retrieve()
 	{
 		Session session=sessionFactory.openSession();
@@ -44,7 +45,7 @@ public class CategoryDaoImpl implements CategoryDao
 		session.getTransaction().commit();
 		return list;
 	}
-	
+	//==============find category by cid==================================
 	public Category findById(int cid)
 	{
 		Session session=sessionFactory.openSession();
@@ -72,7 +73,7 @@ public class CategoryDaoImpl implements CategoryDao
 			session.delete(category);
 			session.getTransaction().commit();
 		}
-
+		//==========================update category======================================
 		public void updateCategory(Category c)
 		{
 			Session session=sessionFactory.openSession();

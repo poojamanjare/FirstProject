@@ -16,23 +16,23 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity					//it should automatically create table through hibernate
-@Table(name="User")		//"User"=name of table
-public class User implements Serializable 		//serializable=because we pass data through object
+@Entity					
+@Table(name="User")		
+public class User implements Serializable 		
 {
 	@Id											//it create email column as primary key
-	@Email(message="Enter valid Email")	
+	@Email(message="Enter valid Email")			//@Email,@NotEmpty=hibernate validation
 	@NotEmpty(message="Enter the Email")
 	private String email;
 	
-	
-	
 	@NotEmpty(message="Enter the Name")
-	@Column(name="name")
+	@Column(name="name")						//@Column,@NotNull,@Size,@PAtteren=validation-api
 	private String name;
 	
 	@NotNull(message="Password is Null")
 	private String password;
+	
+	private String confirm_password;
 	
 	private String role;
 	
@@ -40,22 +40,13 @@ public class User implements Serializable 		//serializable=because we pass data 
 	private String address;
 	
 	
-	@Pattern(regexp="[\\d]{10}",message="Please enter 10 digits")
+	@Pattern(regexp="[\\d]{10}",message="Please enter 10 digits")			//regexp=regular expression is an object that describes a pattern of characters.
 	@NotNull
 	@Size(min=8,max=10,message="Enter Correct Phone no.")
 	private String phone;
 	
 	private boolean enabled;
-	
-	/*public int getId() {
-		return id;
-	}
-	public void setId(int id) 
-	{
-		this.id = id;
-	}*/
-	
-	
+		
 	public String getName() {
 		return name;
 	}
@@ -67,6 +58,12 @@ public class User implements Serializable 		//serializable=because we pass data 
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getConfirm_password() {
+		return confirm_password;
+	}
+	public void setConfirm_password(String confirm_password) {
+		this.confirm_password = confirm_password;
 	}
 	public String getRole() {
 		return role;

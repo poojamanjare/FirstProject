@@ -1,7 +1,7 @@
 package com.daoImpl;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.Session;		//provides method to insert,update & delete object
+import org.hibernate.SessionFactory;	//provides factory method to get object of session
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,25 +13,27 @@ import com.model.User;
 	@Repository("UserDaoImpl")
 	public class UserDaoImpl implements UserDao
 	{
-		@Autowired							//It is a process which is used to create a single instance of the class 
-											//and bind it to dispatcher servlet
-		SessionFactory sessionFactory;		//SessionFactory is class(one client request required one session factory )
+		@Autowired						
+		SessionFactory sessionFactory;		//SessionFactory is factory class through which we get session & perform db oprtaion
+		//(one client request required one session factory )
+		//session= session object provides an interface between application & data in db
 		
 		public UserDaoImpl(SessionFactory sessionFactory)
 		{
 			super();
 			this.sessionFactory=sessionFactory;
 		}
-		
+		//==============insert user===================================
 		public void insertUser(User user)
 		{
 			Session session=sessionFactory.openSession();	//creating session object
 			session.beginTransaction();						//creating transaction object
 			session.saveOrUpdate(user);				//saveOrUpdate=persists or updates the given object. 
-													//If id is found, it updates the record otherwise saves the record.
+													
 			session.getTransaction().commit();		//transaction is commited.commit=permanantly save transaction into db
 			
 		}
+		//=========find user by email====================
 		public User findById(String email)
 		{
 			Session session=sessionFactory.openSession();

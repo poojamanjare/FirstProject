@@ -36,8 +36,9 @@ public class Product
 	@JoinColumn(name="sid")
 	private Supplier supplier;
 	
-	@Transient
+	@Transient			//used to prevent the field from getting persist in db
 	MultipartFile pImage;
+	
 	private String imgname;
 	
 	

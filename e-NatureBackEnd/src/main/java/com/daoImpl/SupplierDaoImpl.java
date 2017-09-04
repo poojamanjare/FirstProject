@@ -27,7 +27,7 @@ public class SupplierDaoImpl implements SupplierDao
 	{
 		this.sessionFactory=sessionFactory;
 	}
-	
+	//==============insert supplier===========================
 	public void insertSupplier(Supplier supplier)
 	{
 		Session session=sessionFactory.openSession();
@@ -35,8 +35,7 @@ public class SupplierDaoImpl implements SupplierDao
 		session.saveOrUpdate(supplier);
 		session.getTransaction().commit();
 	}
-
-	
+	//==================retrieve supplier list========================
 	public List<Supplier>retrieve()
 	{
 		Session session=sessionFactory.openSession();
@@ -45,7 +44,7 @@ public class SupplierDaoImpl implements SupplierDao
 		session.getTransaction().commit();
 		return list;
 	}
-	
+	//================find supplier by sid============================
 	public Supplier findById(int sid)
 	{
 		Session session=sessionFactory.openSession();
@@ -64,7 +63,7 @@ public class SupplierDaoImpl implements SupplierDao
 		return p;
 		
 	}
-	
+	//================delete supplier=======================
 	public void deleteSupplier(int sid)
 	{
 		Session session=sessionFactory.openSession();
@@ -73,7 +72,7 @@ public class SupplierDaoImpl implements SupplierDao
 		session.delete(supplier);
 		session.getTransaction().commit();
 	}
-
+	//==============update supplier==========================
 	public void update(Supplier s)
 	{
 		Session session=sessionFactory.openSession();

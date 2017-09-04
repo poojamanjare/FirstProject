@@ -14,7 +14,7 @@ public class Category
 	private int cid;
 	private String name;
 	
-	@OneToMany(targetEntity=Product.class,fetch=FetchType.EAGER,mappedBy=("category"))//remove mappedBy=("category")
+	@OneToMany(targetEntity=Product.class,fetch=FetchType.EAGER,mappedBy=("category"))	//EAGAR=it will fetch details immediately in object
 	private Set<Product>products=new HashSet<Product>(0);
 
 	public int getCid() {

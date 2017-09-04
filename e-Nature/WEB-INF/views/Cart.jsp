@@ -18,12 +18,12 @@ background-image: url("resources/images/wall2.jpg");
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-<title>Insert title here</title>
+<title>Cart</title>
 </head>
 <body>
 <%@include file="header.jsp" %>
 <div class="container">
-	<h2><img  src="${pageContext.request.contextPath}/resources/images/cart.png" height="10%" width="10%">CART</h2>
+	<h1><img  src="${pageContext.request.contextPath}/resources/images/cart.png" height="10%" width="10%">CART</h1>
 	<table class="table table-hover table-condenced" id="cart">
 		<thead>
 			<tr>
@@ -49,11 +49,11 @@ background-image: url("resources/images/wall2.jpg");
 					<td><c:out value="${c.cartQuantity}"></c:out></td>
 					<td><c:out value="${c.cartPrice }"></c:out></td>
 		
-					<td><img src="${pageContext.request.contextPath}/resources/<c:out value='${c.cartImage}'></c:out>"height="50px" width="50px"></td>
+					<td><img src="${pageContext.request.contextPath}/resources/images/<c:out value='${c.cartImage}'></c:out>"height="50px" width="50px"></td>
 		
 					<td><c:out value="${c.cartQuantity * c.cartPrice }"></c:out></td>
 		
-					<td><a href="${pageContext.request.contextPath}/deleteCart/${c.cartId}" class="btn btn-danger">Delete</a></td>
+					<td><a href="${pageContext.request.contextPath}/deleteCart/${c.cartId}" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" ></i>Delete</a></td>
 					<c:set var="gtot" value="${gtot + c.cartPrice * c.cartQuantity}"></c:set>
 				</tr>
 			</c:forEach>
@@ -61,7 +61,7 @@ background-image: url("resources/images/wall2.jpg");
 			<tr>
 				
 				<td>
-				<!-- <lable>Grand Total</lable> -->
+				
 						<span class="col-lg-9" align="right"><b>Grand Total: </b><c:out value="${gtot}"></c:out></span>		<!--show grand total  -->
 				</td>
 			</tr>
@@ -70,11 +70,11 @@ background-image: url("resources/images/wall2.jpg");
 		<tfoot>
 			<tr>
 				<td><a href="${pageContext.request.contextPath}/index" class="btn btn-warning">
-					<i class="fa fa-angle-left"></i>Continue Shopping</a>
+					<i class="fa fa-angle-double-left" aria-hidden="true"></i> Continue Shopping</a>
 				</td>
 				<c:if test="${not empty cartInfo}">
 					<td><a href="${pageContext.request.contextPath}/checkout" class="btn btn-success btn-block">Checkout
-						<i class="fa fa-angle-right"></i></a>
+						<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 					</td>
 				</c:if>
 			</tr>

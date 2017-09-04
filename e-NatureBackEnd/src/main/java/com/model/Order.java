@@ -23,7 +23,7 @@ public class Order
 	private int orderId;
 	
 	@ManyToOne
-	@JoinColumn(name="email")
+	@JoinColumn(name="email")		//email column join to orders table(foreign key)
 	private User user;
 	
 	private String payment;

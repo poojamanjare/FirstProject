@@ -10,7 +10,7 @@
   <name>e-Nature Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-  <!-- ========================adding backend project to front end================================= -->
+  <!-- ========================adding backend project to front end======(POM=Project Object Model)=========================== -->
   <dependency>
   <groupId>eComm</groupId>
   <artifactId>e-NatureBackEnd</artifactId>

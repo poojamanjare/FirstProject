@@ -24,7 +24,7 @@ public class OrderDaoImpl
 	{
 		this.sessionFactory=sessionFactory;
 	}
-	//=================insert into order table==================================
+	//=================insert order into order table==================================
 	public void insert(Order order)
 	{
 		Session session=sessionFactory.openSession();

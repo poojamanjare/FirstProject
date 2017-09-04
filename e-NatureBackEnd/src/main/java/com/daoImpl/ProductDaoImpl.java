@@ -26,7 +26,7 @@ public class ProductDaoImpl implements ProductDao
 	{
 		this.sessionFactory=sessionFactory;
 	}
-	
+	//==============insert product=========================
 	public void insertProduct(Product product)
 	{
 		Session session=sessionFactory.openSession();
@@ -34,7 +34,7 @@ public class ProductDaoImpl implements ProductDao
 		session.saveOrUpdate(product);
 		session.getTransaction().commit();
 	}
-	
+	//============for retrieve product list=========================
 	public List<Product>retrieve()
 	{
 		Session session=sessionFactory.openSession();
@@ -43,7 +43,7 @@ public class ProductDaoImpl implements ProductDao
 		session.getTransaction().commit();
 		return list;
 	}
-	
+	//=============for find product by pid========================
 	public Product findById(int pid)
 	{
 		Session session=sessionFactory.openSession();
@@ -63,7 +63,7 @@ public class ProductDaoImpl implements ProductDao
 		return p;
 		
 	}
-	
+	//============for get product by pid===================================
 	public List<Product>getProdById(int cid)
 	{
 		Session session=sessionFactory.openSession();
@@ -83,7 +83,7 @@ public class ProductDaoImpl implements ProductDao
 		session.delete(product);
 		session.getTransaction().commit();
 	}
-
+	//============for update product=====================
 	public void update(Product p)
 	{
 		Session session=sessionFactory.openSession();
